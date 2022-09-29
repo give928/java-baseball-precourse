@@ -4,22 +4,22 @@ import java.util.Objects;
 
 public class Ball {
     private final Position position;
-    private final int number;
+    private final Number number;
 
-    private Ball(Position position, int number) {
+    private Ball(Position position, Number number) {
         this.position = position;
         this.number = number;
     }
 
     public static Ball of(int position, int number) {
-        return new Ball(Position.from(position), number);
+        return new Ball(Position.from(position), Number.from(number));
     }
 
     public Judgement judge(Ball ball) {
         if (this.equals(ball)) {
             return Judgement.STRIKE;
         }
-        if (number == ball.number) {
+        if (number.equals(ball.number)) {
             return Judgement.BALL;
         }
         return Judgement.NOTING;
@@ -34,7 +34,7 @@ public class Ball {
             return false;
         }
         Ball ball = (Ball) o;
-        return number == ball.number && Objects.equals(position, ball.position);
+        return Objects.equals(position, ball.position) && Objects.equals(number, ball.number);
     }
 
     @Override

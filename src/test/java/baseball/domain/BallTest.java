@@ -32,7 +32,7 @@ class BallTest {
     }
 
     @DisplayName("볼을 판정한다.")
-    @ParameterizedTest(name = "{displayName}({argumentsWithNames})")
+    @ParameterizedTest(name = "{1}")
     @MethodSource("judgeArguments")
     void judge(Ball userBall, Judgement expected) {
         // given
