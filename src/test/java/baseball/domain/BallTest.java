@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BallTest {
     private static Stream<Arguments> judgeArguments() {
-        return Stream.of(Arguments.of(Ball.of(1, 2), -1),
-                         Arguments.of(Ball.of(2, 1), 0),
-                         Arguments.of(Ball.of(1, 1), 1));
+        return Stream.of(Arguments.of(Ball.of(1, 2), Judgement.NOTING),
+                         Arguments.of(Ball.of(2, 1), Judgement.BALL),
+                         Arguments.of(Ball.of(1, 1), Judgement.STRIKE));
     }
 
     @DisplayName("볼 객체를 생성한다.")
@@ -34,12 +34,12 @@ class BallTest {
     @DisplayName("볼을 판정한다.")
     @ParameterizedTest(name = "{displayName}({argumentsWithNames})")
     @MethodSource("judgeArguments")
-    void judge(Ball userBall, int expected) {
+    void judge(Ball userBall, Judgement expected) {
         // given
         Ball computerBall = Ball.of(1, 1);
 
         // when
-        int actual = computerBall.judge(userBall);
+        Judgement actual = computerBall.judge(userBall);
 
         // then
         assertThat(actual).isEqualTo(expected);

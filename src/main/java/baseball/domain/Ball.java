@@ -15,14 +15,14 @@ public class Ball {
         return new Ball(position, number);
     }
 
-    public int judge(Ball ball) {
+    public Judgement judge(Ball ball) {
         if (this.equals(ball)) {
-            return 1;
+            return Judgement.STRIKE;
         }
         if (number == ball.number) {
-            return 0;
+            return Judgement.BALL;
         }
-        return -1;
+        return Judgement.NOTING;
     }
 
     @Override
