@@ -11,10 +11,12 @@ public class Balls {
         this.values = Collections.unmodifiableList(values);
     }
 
-    public static Balls from(String text) {
-        List<Integer> numbers = mapNumbers(text);
-        validate(numbers);
+    public static Balls from(List<Integer> numbers) {
         return new Balls(mapBalls(numbers));
+    }
+
+    public static Balls from(String text) {
+        return new Balls(mapBalls(mapNumbers(text)));
     }
 
     private static List<Integer> mapNumbers(String text) {
@@ -36,6 +38,7 @@ public class Balls {
     }
 
     private static List<Ball> mapBalls(List<Integer> numbers) {
+        validate(numbers);
         List<Ball> values = new ArrayList<>();
         for (int i = 0; i < numbers.size(); i++) {
             values.add(Ball.of(i + 1, numbers.get(i)));
