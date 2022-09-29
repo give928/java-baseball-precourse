@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BallTest {
     private static Stream<Arguments> judgeArguments() {
-        return Stream.of(Arguments.of(Ball.of(1, 2), Judgement.NOTING),
+        return Stream.of(Arguments.of(Ball.of(1, 2), Judgement.NOTHING),
                          Arguments.of(Ball.of(2, 1), Judgement.BALL),
                          Arguments.of(Ball.of(1, 1), Judgement.STRIKE));
     }

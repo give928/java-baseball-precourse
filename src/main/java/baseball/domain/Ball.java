@@ -22,7 +22,7 @@ public class Ball {
         if (number.equals(ball.number)) {
             return Judgement.BALL;
         }
-        return Judgement.NOTING;
+        return Judgement.NOTHING;
     }
 
     @Override
