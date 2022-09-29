@@ -34,9 +34,9 @@ class BallsTest {
         assertThat(balls).isEqualTo(Balls.from(NUMBERS));
     }
 
-    @DisplayName("3개의 숫자가 아니면 볼 컬렉션 객체를 생성할 수 없다.")
+    @DisplayName("중복되지 않은 3개의 숫자가 아니면 볼 컬렉션 객체를 생성할 수 없다.")
     @ParameterizedTest(name = "{argumentsWithNames}")
-    @ValueSource(strings = {"42", "4259"})
+    @ValueSource(strings = {"42", "4259", "442"})
     void invalidNumberSize(String text) {
         // when
         ThrowingCallable throwingCallable = () -> Balls.from(text);
