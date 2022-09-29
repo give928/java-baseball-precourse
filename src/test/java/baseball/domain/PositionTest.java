@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionTest {
     @DisplayName("볼 위치 객체를 생성한다.")
-    @ParameterizedTest(name = "{displayName} {argumentsWithNames}")
+    @ParameterizedTest(name = "{argumentsWithNames}")
     @ValueSource(ints = {1, 3})
     void create(int value) {
         // when
@@ -21,7 +21,7 @@ class PositionTest {
     }
 
     @DisplayName("유효하지 않은 위치는 생성할 수 없다.")
-    @ParameterizedTest(name = "{displayName} {argumentsWithNames}")
+    @ParameterizedTest(name = "{argumentsWithNames}")
     @ValueSource(ints = {0, 4})
     void invalidPosition(int value) {
         // when
