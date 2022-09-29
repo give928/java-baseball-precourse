@@ -11,8 +11,11 @@ class RandomNumberGeneratorTest {
     @DisplayName("1 ~ 9 사이의 서로 다른 임의의 수 3개를 생성한다.")
     @Test
     void generate() {
+        // given
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+
         // when
-        List<Integer> numbers = RandomNumberGenerator.generate();
+        List<Integer> numbers = numberGenerator.generate();
 
         // then
         assertThat(numbers).allMatch(number -> Number.MIN <= number && number <= Number.MAX)
