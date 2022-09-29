@@ -3,8 +3,8 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Number {
-    private static final int MIN = 1;
-    private static final int MAX = 9;
+    static final int MIN = 1;
+    static final int MAX = 9;
     static final String INVALID_VALUE_MESSAGE = "볼 숫자는 1 ~ 9 사이로 입력해주세요.";
 
     private final int value;
