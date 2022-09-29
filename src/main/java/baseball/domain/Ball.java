@@ -3,16 +3,16 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Ball {
-    private final int position;
+    private final Position position;
     private final int number;
 
-    public Ball(int position, int number) {
+    private Ball(Position position, int number) {
         this.position = position;
         this.number = number;
     }
 
     public static Ball of(int position, int number) {
-        return new Ball(position, number);
+        return new Ball(Position.from(position), number);
     }
 
     public Judgement judge(Ball ball) {
@@ -34,7 +34,7 @@ public class Ball {
             return false;
         }
         Ball ball = (Ball) o;
-        return position == ball.position && number == ball.number;
+        return number == ball.number && Objects.equals(position, ball.position);
     }
 
     @Override
