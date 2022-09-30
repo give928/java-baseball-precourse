@@ -19,10 +19,10 @@ class BallsTest {
     private static final String NUMBERS = "425";
 
     private static Stream<Arguments> judgeArguments() {
-        return Stream.of(Arguments.of("789", new Judgement[]{Judgement.NOTHING, Judgement.NOTHING, Judgement.NOTHING}),
-                         Arguments.of("123", new Judgement[]{Judgement.NOTHING, Judgement.STRIKE, Judgement.NOTHING}),
-                         Arguments.of("456", new Judgement[]{Judgement.STRIKE, Judgement.BALL, Judgement.NOTHING}),
-                         Arguments.of(NUMBERS, new Judgement[]{Judgement.STRIKE, Judgement.STRIKE, Judgement.STRIKE}));
+        return Stream.of(Arguments.of(NUMBERS, "789", new Judgement[]{Judgement.NOTHING, Judgement.NOTHING, Judgement.NOTHING}),
+                         Arguments.of(NUMBERS, "123", new Judgement[]{Judgement.NOTHING, Judgement.STRIKE, Judgement.NOTHING}),
+                         Arguments.of(NUMBERS, "456", new Judgement[]{Judgement.STRIKE, Judgement.BALL, Judgement.NOTHING}),
+                         Arguments.of(NUMBERS, NUMBERS, new Judgement[]{Judgement.STRIKE, Judgement.STRIKE, Judgement.STRIKE}));
     }
 
     @DisplayName("볼 컬렉션 객체를 생성한다.")
@@ -50,12 +50,12 @@ class BallsTest {
     @DisplayName("볼 3개의 판정을 구한다.")
     @ParameterizedTest(name = "{argumentsWithNames}")
     @MethodSource("judgeArguments")
-    void judge(String numbers, Judgement[] expected) {
+    void judge(String question, String answer, Judgement[] expected) {
         // given
-        Balls balls = Balls.from(NUMBERS);
+        Balls balls = Balls.from(question);
 
         // when
-        List<Judgement> actual = balls.judge(Balls.from(numbers));
+        List<Judgement> actual = balls.judge(Balls.from(answer));
 
         // then
         assertThat(actual).containsExactly(expected);

@@ -3,11 +3,11 @@ package baseball.domain;
 import java.util.*;
 
 public class Balls {
-    static final String INVALID_VALUES_MESSAGE = "중복되지 않는 숫자 3개를 입력해주세요.";
+    static final String INVALID_VALUES_MESSAGE = String.format("중복되지 않는 숫자 %d개를 입력해주세요.", Position.MAX);
 
     private final List<Ball> values;
 
-    public Balls(List<Ball> values) {
+    private Balls(List<Ball> values) {
         this.values = Collections.unmodifiableList(values);
     }
 
@@ -16,7 +16,7 @@ public class Balls {
     }
 
     public static Balls from(String text) {
-        return new Balls(mapBalls(convertToNumbers(text)));
+        return from(convertToNumbers(text));
     }
 
     private static List<Integer> convertToNumbers(String text) {
@@ -59,10 +59,10 @@ public class Balls {
     private Judgement judge(Ball ball) {
         List<Judgement> judgements = new ArrayList<>();
         values.forEach(value -> judgements.add(value.judge(ball)));
-        return findJudgement(judgements);
+        return judge(judgements);
     }
 
-    private Judgement findJudgement(List<Judgement> judgements) {
+    private Judgement judge(List<Judgement> judgements) {
         if (judgements.contains(Judgement.STRIKE)) {
             return Judgement.STRIKE;
         }

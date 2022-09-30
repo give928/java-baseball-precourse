@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.List;
 
 public class Result {
-    private static final String INVALID_SIZE_MESSAGE = "숫자 3개에 대한 판정을 모두 입력해주세요.";
+    private static final String INVALID_SIZE_MESSAGE = String.format("숫자 %d개에 대한 판정을 모두 입력해주세요.", Position.MAX);
 
     private final int strike;
     private final int ball;
@@ -28,20 +28,20 @@ public class Result {
         int strike = 0;
         int ball = 0;
         for (Judgement judgement : judgements) {
-            strike += getStrikeCount(judgement);
-            ball += getBallCount(judgement);
+            strike += getStrike(judgement);
+            ball += getBall(judgement);
         }
         return new Result(strike, ball);
     }
 
-    private static int getStrikeCount(Judgement judgement) {
+    private static int getStrike(Judgement judgement) {
         if (judgement.isStrike()) {
             return 1;
         }
         return 0;
     }
 
-    private static int getBallCount(Judgement judgement) {
+    private static int getBall(Judgement judgement) {
         if (judgement.isBall()) {
             return 1;
         }

@@ -12,6 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("볼 관련 기능")
 class BallTest {
+    private static final int POSITION = 1;
+    private static final int NUMBER = 1;
+
     private static Stream<Arguments> judgeArguments() {
         return Stream.of(Arguments.of(Ball.of(1, 2), Judgement.NOTHING),
                          Arguments.of(Ball.of(2, 1), Judgement.BALL),
@@ -21,15 +24,11 @@ class BallTest {
     @DisplayName("볼 객체를 생성한다.")
     @Test
     void create() {
-        // given
-        int position = 1;
-        int number = 1;
-
         // when
-        Ball ball = Ball.of(position, number);
+        Ball ball = Ball.of(POSITION, NUMBER);
 
         // then
-        assertThat(ball).isEqualTo(Ball.of(position, number));
+        assertThat(ball).isEqualTo(Ball.of(POSITION, NUMBER));
     }
 
     @DisplayName("볼을 판정한다.")
@@ -37,7 +36,7 @@ class BallTest {
     @MethodSource("judgeArguments")
     void judge(Ball userBall, Judgement expected) {
         // given
-        Ball computerBall = Ball.of(1, 1);
+        Ball computerBall = Ball.of(POSITION, NUMBER);
 
         // when
         Judgement actual = computerBall.judge(userBall);

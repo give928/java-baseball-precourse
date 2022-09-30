@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Position {
     private static final int MIN = 1;
     static final int MAX = 3;
-    static final String INVALID_VALUE_MESSAGE = "볼 위치는 1 ~ 3 사이의 숫자로 입력해주세요.";
+    static final String INVALID_VALUE_MESSAGE = String.format("볼 위치는 %d ~ %d 사이의 숫자로 입력해주세요.", MIN, MAX);
 
     private static final Map<Integer, Position> POSITION_MAP;
     static {

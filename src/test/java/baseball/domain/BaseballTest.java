@@ -12,6 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("게임 관련 기능")
 class BaseballTest {
+    private static final List<Integer> NUMBERS = Arrays.asList(1, 2, 3);
+    private static final String JUDGEMENT_NUMBERS = "123";
+
     @DisplayName("컴퓨터 임의의 수를 생성한다.")
     @Test
     void create() {
@@ -30,10 +33,10 @@ class BaseballTest {
     @Test
     void judge() {
         // given
-        Baseball baseball = Baseball.from(() -> Arrays.asList(1, 2, 3));
+        Baseball baseball = Baseball.from(() -> NUMBERS);
 
         // when
-        Result result = baseball.judge("123");
+        Result result = baseball.judge(JUDGEMENT_NUMBERS);
 
         // then
         assertThat(result.isOut()).isTrue();
@@ -43,18 +46,18 @@ class BaseballTest {
     @Test
     void generate() {
         // given
-        Queue<List<Integer>> queue = new LinkedList<>(Arrays.asList(Arrays.asList(1, 2, 3), Arrays.asList(4, 5, 6)));
+        Queue<List<Integer>> queue = new LinkedList<>(Arrays.asList(NUMBERS, Arrays.asList(4, 5, 6)));
         Baseball baseball = Baseball.from(queue::poll);
 
         // when
-        Result result123 = baseball.judge("123");
+        Result result123 = baseball.judge(JUDGEMENT_NUMBERS);
 
         // then
         assertThat(result123.isOut()).isTrue();
 
         // when
         baseball.initialize();
-        Result result456 = baseball.judge("123");
+        Result result456 = baseball.judge(JUDGEMENT_NUMBERS);
 
         // then
         assertThat(result456.isOut()).isFalse();
