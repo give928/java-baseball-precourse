@@ -14,18 +14,18 @@ public class BaseballController {
         Baseball baseball = Baseball.from(numberGenerator);
         boolean play = true;
         while (play) {
-            Result result = inputNumbers(baseball);
-            play = result.isNotOut() || isRestart(baseball);
+            Result result = play(baseball);
+            play = result.isNotOut() || restart(baseball);
         }
     }
 
-    private static Result inputNumbers(Baseball baseball) {
+    private static Result play(Baseball baseball) {
         Result result = baseball.judge(InputView.inputNumbers());
         OutputView.showResult(result);
         return result;
     }
 
-    private static boolean isRestart(Baseball baseball) {
+    private static boolean restart(Baseball baseball) {
         String input = InputView.inputRestart();
         if (InputView.RESTART.equals(input)) {
             baseball.initialize();
