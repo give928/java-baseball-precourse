@@ -12,17 +12,13 @@ public final class InputView {
     }
 
     public static String inputNumbers() {
-        write(NUMBERS_MESSAGE);
+        System.out.print(NUMBERS_MESSAGE);
         return read();
     }
 
     public static String inputRestart() {
-        write(RESTART_MESSAGE);
+        System.out.println(RESTART_MESSAGE);
         return read();
-    }
-
-    private static void write(String message) {
-        System.out.println(message);
     }
 
     public static String read() {
