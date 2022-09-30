@@ -3,16 +3,21 @@ package baseball.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public final class RandomNumberGenerator implements NumberGenerator {
     public List<Integer> generate() {
-        Set<Integer> numbers = new HashSet<>();
+        List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < Position.MAX) {
-            numbers.add(Randoms.pickNumberInRange(Number.MIN, Number.MAX));
+            addNumber(numbers);
         }
-        return new ArrayList<>(numbers);
+        return numbers;
+    }
+
+    private static void addNumber(List<Integer> numbers) {
+        int number = Randoms.pickNumberInRange(Number.MIN, Number.MAX);
+        if (!numbers.contains(number)) {
+            numbers.add(number);
+        }
     }
 }
