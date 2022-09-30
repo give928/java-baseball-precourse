@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("결과 관련 기능")
 class ResultTest {
     public static Stream<Arguments> resultArguments() {
         return Stream.of(Arguments.of(Arrays.asList(Judgement.STRIKE, Judgement.STRIKE, Judgement.STRIKE), 3, 0),

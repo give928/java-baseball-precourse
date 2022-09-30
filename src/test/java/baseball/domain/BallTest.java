@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("볼 관련 기능")
 class BallTest {
     private static Stream<Arguments> judgeArguments() {
         return Stream.of(Arguments.of(Ball.of(1, 2), Judgement.NOTHING),

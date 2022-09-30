@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("임의의 수 생성 관련 기능")
 class RandomNumberGeneratorTest {
     @DisplayName("1 ~ 9 사이의 서로 다른 임의의 수 3개를 생성한다.")
     @Test

@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("볼 컬렉션 관련 기능")
 class BallsTest {
     private static final String NUMBERS = "425";
 

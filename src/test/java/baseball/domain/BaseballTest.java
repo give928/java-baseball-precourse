@@ -10,6 +10,7 @@ import java.util.Queue;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("게임 관련 기능")
 class BaseballTest {
     @DisplayName("컴퓨터 임의의 수를 생성한다.")
     @Test

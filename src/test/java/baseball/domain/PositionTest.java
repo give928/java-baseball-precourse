@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("볼 위치 관련 기능")
 class PositionTest {
     @DisplayName("볼 위치 객체를 생성한다.")
     @ParameterizedTest(name = "{argumentsWithNames}")
