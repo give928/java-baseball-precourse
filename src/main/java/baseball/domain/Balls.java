@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.*;
 
 public class Balls {
-    static final String INVALID_VALUES_MESSAGE = "숫자 3개를 공백없이 입력해주세요.";
+    static final String INVALID_VALUES_MESSAGE = "중복되지 않는 숫자 3개를 입력해주세요.";
 
     private final List<Ball> values;
 
