@@ -15,6 +15,16 @@ public class Result {
 
     public static Result from(List<Judgement> judgements) {
         validate(judgements);
+        return createInstance(judgements);
+    }
+
+    private static void validate(List<Judgement> judgements) {
+        if (judgements.size() != Position.MAX) {
+            throw new IllegalStateException(INVALID_SIZE_MESSAGE);
+        }
+    }
+
+    private static Result createInstance(List<Judgement> judgements) {
         int strike = 0;
         int ball = 0;
         for (Judgement judgement : judgements) {
@@ -22,12 +32,6 @@ public class Result {
             ball += getBallCount(judgement);
         }
         return new Result(strike, ball);
-    }
-
-    private static void validate(List<Judgement> judgements) {
-        if (judgements.size() != Position.MAX) {
-            throw new IllegalStateException(INVALID_SIZE_MESSAGE);
-        }
     }
 
     private static int getStrikeCount(Judgement judgement) {
@@ -54,5 +58,21 @@ public class Result {
 
     public boolean isOut() {
         return strike == Position.MAX;
+    }
+
+    public boolean isNotOut() {
+        return !isOut();
+    }
+
+    public boolean isNothing() {
+        return !hasBall() && !hasStrike();
+    }
+
+    public boolean hasBall() {
+        return ball > 0;
+    }
+
+    public boolean hasStrike() {
+        return strike > 0;
     }
 }

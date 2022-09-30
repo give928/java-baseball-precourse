@@ -24,7 +24,12 @@ class ResultTest {
                          Arguments.of(Arrays.asList(Judgement.STRIKE, Judgement.STRIKE, Judgement.NOTHING), false));
     }
 
-    @DisplayName("결과 객체를 생성한다.")
+    public static Stream<Arguments> atArguments() {
+        return Stream.of(Arguments.of(Arrays.asList(Judgement.BALL, Judgement.STRIKE, Judgement.NOTHING), false, true, true),
+                         Arguments.of(Arrays.asList(Judgement.NOTHING, Judgement.NOTHING, Judgement.NOTHING), true, false, false));
+    }
+
+    @DisplayName("결과 객체를 생성하고 스트라이크, 볼을 확인한다.")
     @ParameterizedTest(name = "{argumentsWithNames}")
     @MethodSource("resultArguments")
     void create(List<Judgement> judgements, int strike, int ball) {
@@ -45,5 +50,29 @@ class ResultTest {
 
         // then
         assertThat(result.isOut()).isEqualTo(out);
+    }
+
+    @DisplayName("아웃이 아닌지 확인한다.")
+    @ParameterizedTest(name = "{argumentsWithNames}")
+    @MethodSource("outArguments")
+    void notOut(List<Judgement> judgements, boolean out) {
+        // when
+        Result result = Result.from(judgements);
+
+        // then
+        assertThat(result.isNotOut()).isEqualTo(!out);
+    }
+
+    @DisplayName("낫싱, 스트라이크, 볼 여부를 확인한다.")
+    @ParameterizedTest(name = "{argumentsWithNames}")
+    @MethodSource("atArguments")
+    void at(List<Judgement> judgements, boolean nothing, boolean strike, boolean ball) {
+        // when
+        Result result = Result.from(judgements);
+
+        // then
+        assertThat(result.isNothing()).isEqualTo(nothing);
+        assertThat(result.hasStrike()).isEqualTo(strike);
+        assertThat(result.hasBall()).isEqualTo(ball);
     }
 }
