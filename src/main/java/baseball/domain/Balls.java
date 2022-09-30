@@ -16,18 +16,22 @@ public class Balls {
     }
 
     public static Balls from(String text) {
-        return new Balls(mapBalls(mapNumbers(text)));
+        return new Balls(mapBalls(convertToNumbers(text)));
     }
 
-    private static List<Integer> mapNumbers(String text) {
+    private static List<Integer> convertToNumbers(String text) {
         try {
             List<Integer> numbers = new ArrayList<>();
-            for (int i = 0; i < text.length(); i++) {
-                numbers.add(Character.getNumericValue(text.charAt(i)));
-            }
+            addNumbers(numbers, text);
             return numbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_VALUES_MESSAGE);
+        }
+    }
+
+    private static void addNumbers(List<Integer> numbers, String text) {
+        for (int i = 0; i < text.length(); i++) {
+            numbers.add(Character.getNumericValue(text.charAt(i)));
         }
     }
 
