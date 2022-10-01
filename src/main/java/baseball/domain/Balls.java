@@ -20,19 +20,11 @@ public class Balls {
     }
 
     private static List<Integer> convertToNumbers(String text) {
-        try {
-            List<Integer> numbers = new ArrayList<>();
-            addNumbers(numbers, text);
-            return numbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_VALUES_MESSAGE);
-        }
-    }
-
-    private static void addNumbers(List<Integer> numbers, String text) {
+        List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < text.length(); i++) {
             numbers.add(Character.getNumericValue(text.charAt(i)));
         }
+        return numbers;
     }
 
     private static void validate(List<Integer> numbers) {
